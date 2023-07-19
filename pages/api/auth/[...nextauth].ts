@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt"
-import { AuthOptions } from "next-auth"
-import NextAuth from "next-auth"
+import NextAuth, { AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
@@ -34,7 +33,7 @@ export const authOptions: AuthOptions = {
           where: {
             email: credentials.email
           }
-        });
+        })
 
         if (!user || !user?.hashedPassword) {
           throw new Error('Invalid credentials');
@@ -46,10 +45,10 @@ export const authOptions: AuthOptions = {
         );
 
         if (!isCorrectPassword) {
-          throw new Error('Invalid credentials');
+          throw new Error('Invalid credentials')
         }
 
-        return user;
+        return user
       }
     })
   ],
@@ -63,5 +62,4 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 }
 
-// @ts-ignore
-export default NextAuth(authOptions);
+export default NextAuth(authOptions)
