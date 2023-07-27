@@ -5,6 +5,7 @@ import Avatar from '../Avatar'
 import { useState } from 'react'
 import { useCallback } from 'react'
 import MenuItem from './MenuItem'
+import { useRouter } from 'next/navigation'
 
 import useRegisterModal from '@/app/hooks/useRegisterModal'
 import useLoginModal from '@/app/hooks/useLoginModal'
@@ -19,6 +20,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
   currentUser
 }) => {
+  const router = useRouter()
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
   const rentModal = useRentModal()
@@ -70,7 +72,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
               <>
                 <MenuItem
                   label='My trips'
-                  onClick={() => {}}
+                  onClick={() => router.push("/trips")}
                 />
                 <MenuItem
                   label='My favorites'
